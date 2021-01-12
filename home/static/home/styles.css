@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Beachday;
+  src: url("./fonts/beachday.ttf") format("truetype");
+}
+
+body {
+  font-family: Beachday !important;
+  font-size: 2em !important;
+}

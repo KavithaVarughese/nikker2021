@@ -1,0 +1,53 @@
+.body {
+  background-image: url('https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery-dark-materialize.min.css?v=14218680266939531708');
+}
+
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  transform: translateZ(-1px);
+}
+
+nav {
+  font-family: Beachday !important;
+  height: 20px;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.navbar-inverse {
+  overflow: hidden;
+}
+
+.navbar-nav > li > a {
+  display: inline;
+  vertical-align: middle;
+  font-size: 16px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin-left: 7px !important;
+  margin-right: 0px !important;
+}

@@ -1,0 +1,37 @@
+.carousel-item {
+  width: 400px !important;
+  height: 80vh !important;
+  translate: 0px -20px;
+}
+
+img {
+  border: 5px solid black;
+}
+
+.carousel {
+  height: 100vh;
+  margin-bottom: 200px;
+  overflow-y: hidden;
+}
+
+.container {
+  width: 70% !important;
+  height: 120vh;
+  overflow: hidden;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+body {
+  position: relative;
+  background-image: url("./memes.png");
+  background-size:100%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  
+}
+
+nav {
+  height: 50px !important;
+  overflow: hidden;
+}

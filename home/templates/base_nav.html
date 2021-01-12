@@ -1,0 +1,27 @@
+{% extends 'base_bootstrap.html' %}
+{% load app_tags %}
+    
+{% block navbar %}
+<!-- https://www.w3schools.com/bootstrap/bootstrap_navbar.asp -->
+<nav class="navbar navbar-default navbar-inverse" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home:main' %}">{{ settings.APP_NAME }}</a>
+        </div>
+        <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
+        <ul class="nav navbar-nav">
+
+        <!-- Assign output of url function to a variable named
+          'xyz' to use in the if statement -->
+            {% url 'home:main' as xyz %}
+            <li {% if request.get_full_path == xyz %}class="active"{% endif %}>
+                <a href="{% url 'home:main' %}">Home</a>
+            </li>
+            <li><a href="/memes">Surprise!</a></li>
+            <li><a href="/mail">Messages</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/expression">Meet Sojan</a></li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}

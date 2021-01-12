@@ -1,0 +1,65 @@
+{% extends 'base_nav.html' %}
+{% load static %}
+
+
+{% block head %}
+<link href="{% static 'home/cube.css' %}" rel="stylesheet" type="text/css">
+{% endblock head %}
+    
+
+{% block content %}
+<div class=bg>
+
+<h1>HAPPY BIRTHDAY LUDO KENG!!!</h1>
+
+<div class="cube-container">
+
+	<div class="cube initial-position">
+
+		<img class="cube-face-image image-1" src="{% static 'home/5.jpg' %}">
+		
+		<img class="cube-face-image image-2" src="{% static 'home/1.jpeg' %}">
+		
+		<img class="cube-face-image image-3" src="{% static 'home/2.jpg' %}">
+		
+		<img class="cube-face-image image-4" src="{% static 'home/3.jpg' %}">
+		
+		<img class="cube-face-image image-5" src="{% static 'home/4.jpg' %}">
+		
+		<img class="cube-face-image image-6" src="{% static 'home/6.jpg' %}">
+
+	</div>
+
+</div>
+
+<h2>Click the images below to rotate the cube</h2>
+
+<div class="image-buttons">
+
+	<input type="image" class="show-image-1" src="{% static 'home/5.jpg' %}"></input>
+
+	<input type="image" class="show-image-2" src="{% static 'home/1.jpeg' %}"></input>
+
+	<input type="image" class="show-image-3" src="{% static 'home/2.jpg' %}"></input>
+
+	<input type="image" class="show-image-4" src="{% static 'home/3.jpg' %}"></input>
+
+	<input type="image" class="show-image-5" src="{% static 'home/4.jpg' %}"></input>
+
+	<input type="image" class="show-image-6" src="{% static 'home/6.jpg' %}"></input>
+
+</div>
+
+</div>
+
+<script type="text/javascript" src="{% static 'home/cube.js' %}"></script>
+
+<br>
+<br>
+
+<div>
+<p>Birthday Special</p>
+<p>From R.I.P</p>
+</div>
+{% endblock content %}
+    

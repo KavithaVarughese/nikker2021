@@ -1,0 +1,99 @@
+{% extends 'base_nav.html' %}
+{% load static %} 
+
+{% block head %}
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Solve the phrase to continue</title>
+
+<link rel="stylesheet" href="{% static 'hangman/css/styles.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<div id="body">
+    <div>
+        <img id="hangman-image" height="90%" src='{% static "hangman/img/index0.png" %}' />
+    </div>
+    <div id="word"></div>
+    <br /><br />
+    
+    <div id="failed" hidden="true">You dead boi. Try again!</div>
+    <a id="success" hidden="true" href="">Good job! Click here to continue</a>
+    <div id="letters"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var puzzle_div = document.getElementById("word");
+        var id = {{ id }};
+        var puzzle = "{{ progress }}";
+        var image_object = {
+            "0": "{% static 'hangman/img/index0.png' %}",
+            "1": "{% static 'hangman/img/index1.png' %}",
+            "2": "{% static 'hangman/img/index2.png' %}",
+            "3": "{% static 'hangman/img/index3.png' %}",
+            "4": "{% static 'hangman/img/index4.png' %}",
+            "5": "{% static 'hangman/img/index5.png' %}",
+            "6": "{% static 'hangman/img/index6.png' %}",
+            "7": "{% static 'hangman/img/index7.png' %}",
+        }
+
+        function fillWithLetters() {
+            var letters = document.getElementById("letters");
+            letters.innerHTML = "";
+            for (i = 65; i <= 90; i++) {
+                letters.innerHTML = letters.innerHTML + "<button class=\"letter\" onClick=\"submit('" + String.fromCharCode(i) + "')\">" + String.fromCharCode(i) + "</button>";
+            }
+        }
+
+        fillWithLetters();
+
+        function makeContent(puzzle) {
+            var content = "";
+            for (i = 0; i < puzzle.length; i++) {
+                if (puzzle[i] == "*") {
+                    content = content + "___  ";
+                }
+                else if (puzzle[i] == " ") {
+                    content = content + "&nbsp;&nbsp;&nbsp;&nbsp;"
+                }
+                else {
+                    content = content + "  " + puzzle[i] + "  ";
+                }
+                puzzle_div.innerHTML = "<h3>" + content + "</h3>";
+            }
+        }
+
+        makeContent(puzzle);
+
+        function submit(letter) {
+            $.post(
+                window.location,
+
+
+                {
+                    id: id,
+                    submitted_letter: letter,
+                    progress: puzzle
+                },
+                function (data, status) {
+                    var result = JSON.parse(data);
+                    puzzle = result.progress;
+                    if (result.success == "true") {
+                        document.getElementById("success").setAttribute("href", result.url);
+                        document.getElementById("success").removeAttribute("hidden");
+                    }
+                    else if (result.failed == "true") {
+                        document.getElementById("failed").removeAttribute("hidden");
+                        setTimeout(function () {window.location.replace(window.location)}, 2000);
+                    }
+                    document.getElementById("hangman-image").setAttribute("src", image_object[result.image_idx]);
+                    makeContent(result.progress);
+                }
+            );
+        }
+    </script>
+</div>
+{% endblock content %}
